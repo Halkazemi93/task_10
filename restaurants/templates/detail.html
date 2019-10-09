@@ -13,6 +13,16 @@
   <div class="card-body">
     <h5 class="card-title">{{restaurant.name}}</h5>
     <p class="card-text">{{restaurant.description|linebreaks}}</p>
+    {% for item in restaurant.item_set.all %}
+    <li>
+        {{ item.name }}
+        <br>
+        {{ item.description }}
+        <br>
+        {{ item.price }}
+    </li>
+      
+    {% endfor %}
     <p class="card-text">Opening Time: {{restaurant.opening_time}}</p>
     <p class="card-text">Closing Time: {{restaurant.closing_time}}</p>
     <div class="row text-center">
@@ -21,6 +31,7 @@
         </div>
         <div class="col-md-6">
             <a href="{% url 'restaurant-delete' restaurant.id %}" class="btn btn-outline-danger btn-block">Delete</a>
+            <a href="{% url 'item-create' restaurant.id %}" class="btn btn-outline-success btn-block">Item Create</a>
         </div>
     </div>
   </div>
